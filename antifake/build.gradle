@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'maven'
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -22,8 +22,8 @@ android {
 
     sourceSets {
         main {
-            jni.srcDirs=[]
-            jniLibs.srcDirs=['src/main/libs']
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['src/main/libs']
         }
     }
 }
@@ -35,4 +35,17 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:23.0.1'
     testCompile 'junit:junit:4.12'
+}
+
+
+version = '0.1.0-SNAPSHOT'
+group = 'com.snail.antifake'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+
+            repository(url: uri("${rootProject.projectDir}/repo"))
+        }
+    }
 }
